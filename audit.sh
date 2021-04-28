@@ -25,7 +25,7 @@ ls -l -R /var/log > log_files.txt
 
 host=$(echo $HOSTNAME)
 rm *zip
-zip -q $host *.txt *.csv
+zip -q $host.zip *.txt *.csv
 
 }
 
