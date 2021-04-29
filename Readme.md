@@ -1,4 +1,8 @@
-Requisitos
+## Documentos aplicables
+
+CIS Red Hat EL 8 Benchmark
+
+## Requisitos
 
     1. Disponer de conexión a internet
 
@@ -10,7 +14,7 @@ Requisitos
         cd hardening
         git clone https://github.com/gabridc/pentesting-tools
 
-Uso
+## Uso
 
 1. Ejecutar el script audit.sh
 

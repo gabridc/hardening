@@ -29,12 +29,31 @@ echo "Usuarios con capacidad de login por SSH" >> users.txt
 echo "---------------------------------------------" >> users.txt
 cat /etc/ssh/sshd_config | grep "AllowUsers" >> users.txt
 
-service --status-all > services.txt
+service --status-all > services.txt 
 
 ls -l -R /var/log > log_files.txt
 
+sestatus > selinux.txt
+
 
 }
+
+function swNotDesired{
+    daemons = [avahi-daemon squid smb dovecot httpd vsftpd named nfs rpcbind slapd dhcpd cups ypserv]
+    clients = [telnet ypbind openldap-clients]
+    
+    systemctlExist = $(which systemctl)
+
+    if [[ ! z systemctlExist ]]; then 
+        echo "Systemctl no esta instalado no puede aplicarse el chekceo swNotDesired"
+    else
+        systemctl is-enabled daemons[i]
+    fi
+
+
+}
+
+
 
 function zip{
 
