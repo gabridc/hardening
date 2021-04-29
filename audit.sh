@@ -6,6 +6,12 @@
 
 function audit(){
 
+hostnme = $($HOSTNAME) | grep localhost
+
+if [[ ! z $hostname ]];then
+echo "El HOSTNAME no esta cambiado $hostname"
+fi
+
 cat /etc/redhat-release > redhat_version.txt
 
 #El espacio antes de %{BUILDTIME} espara luego hacer el awk
