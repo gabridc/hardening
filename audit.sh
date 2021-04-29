@@ -5,6 +5,8 @@ source Enumeration/SuidFileVulnerables.sh
 # scp root@<ip>:/root/audit/software_list.csv .
 # scp audit.sh root@<ip>:/root/audit/audit.sh
 
+#Documentation: Readme.md
+
 
 function audit(){
 
