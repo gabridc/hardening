@@ -1,17 +1,18 @@
 Requisitos
 
-    Disponer de conexión a internet
+    1. Disponer de conexión a internet
 
-    Clone del repositorio ​ 
+    2. Clone del repositorio ​ 
 
-git clone https://github.com/gabridc/hardening
+        git clone https://github.com/gabridc/hardening
 
-  3. Clone del repositorio ​ 
-cd hardening
-git clone https://github.com/gabridc/pentesting-tools
+    3. Clone del repositorio ​ 
+        cd hardening
+        git clone https://github.com/gabridc/pentesting-tools
+
 Uso
 
-Ejecutar el script audit.sh
+1. Ejecutar el script audit.sh
 
 Este script checkea:
 
@@ -29,4 +30,4 @@ Este script checkea:
 
     Binarios con flag SUID vulnerables
 
-Tras su ejecución reporta los resultados en un zip cuyo nombre es el nombre del hostname de la maquina
+2. Tras su ejecución reporta los resultados en un zip cuyo nombre es el nombre del hostname de la maquina
