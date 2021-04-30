@@ -8,11 +8,11 @@ source Enumeration/SuidFileVulnerables.sh
 #Documentation: Readme.md
 
 
-function audit(){
+function audit() {
 
-hostnme = $($HOSTNAME) | grep localhost
+hostname=$(echo $HOSTNAME) | grep localhost
 
-if [[ ! z $hostname ]];then
+if [[ -z $hostname ]];then
 echo "El HOSTNAME no esta cambiado $hostname"
 fi
 
@@ -33,37 +33,34 @@ service --status-all > services.txt
 
 ls -l -R /var/log > log_files.txt
 
-sestatus > selinux.txt
 
+sestatus > selinux.txt
 
 }
 
-function swNotDesired{
-    daemons = [avahi-daemon squid smb dovecot httpd vsftpd named nfs rpcbind slapd dhcpd cups ypserv]
-    clients = [telnet ypbind openldap-clients]
+function swNotDesired { 
+    daemons=("avahi-daemon" "squid" "smb" "dovecot" "httpd" "vsftpd" "named" "nfs" "rpcbind" "slapd" "dhcpd" "cups" "ypserv")
+    clients=("telnet" "ypbind" "openldap-clients")
     
-    systemctlExist = $(which systemctl)
+    systemctlExist=$(which systemctl)
 
-    if [[ ! z systemctlExist ]]; then 
+    if [[ -z systemctlExist ]]; then 
         echo "Systemctl no esta instalado no puede aplicarse el chekceo swNotDesired"
     else
-        systemctl is-enabled daemons[i]
+        for daemon in "${daemons[@]}"
+        do
+            res=$(systemctl is-enabled "$daemon" 2>&1)
+
+            if [[ "$res" == "enabled"  ]]; then
+                echo "El servicio $daemon esta activo" >> services.txt
+            fi
+        done
     fi
 
 
 }
 
-
-
-function zip{
-
-host=$(echo $HOSTNAME)
-rm *zip
-zip -q $host.zip *.txt *.csv
-
-}
-
 audit
+swNotDesired
 suidFileExport
-zip
 
