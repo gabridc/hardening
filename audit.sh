@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source Enumeration/SuidFileVulnerables.sh
+source Enumeration/auditd.sh
 
 # scp root@<ip>:/root/audit/software_list.csv .
 # scp audit.sh root@<ip>:/root/audit/audit.sh
@@ -63,4 +64,6 @@ function swNotDesired {
 audit
 swNotDesired
 suidFileExport
+auditConfig
+rules
 
