@@ -2,7 +2,8 @@
 
 source Enumeration/SuidFileVulnerables.sh
 source Enumeration/auditd.sh
-
+source Enumeration/network.sh
+source Enumeration/firewall.sh
 # scp root@<ip>:/root/audit/software_list.csv .
 # scp audit.sh root@<ip>:/root/audit/audit.sh
 
@@ -66,4 +67,12 @@ swNotDesired
 suidFileExport
 auditConfig
 rules
+netipv4
+firewalldEnabled
+iptablesEnabled
 
+echo "**********************************************************"
+echo "               $hostname Hardening Report"
+echo "**********************************************************"
+echo "${firewalldEnabledRest[0]} * ${firewalldEnabledRest[1]} * ${firewalldEnabledRest[2]} * ${firewalldEnabledRest[3]}"
+echo "${iptablesEnabledRest[0]} * ${iptablesEnabledRest[1]} * ${iptablesEnabledRest[2]} * ${iptablesEnabledRest[3]}"
