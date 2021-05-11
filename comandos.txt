@@ -1,0 +1,7 @@
+Get-ChildItem -Path .\audit.sh, .\main.sh, .\zip.sh, .\binaries_location.sh, .\pentesting-tools\Enumeration\auditd.sh, .\pentesting-tools\Enumeration\rsyslog.sh, .\pentesting-tools\Enumeration\firewall.sh, .\pentesting-tools\Enumeration\SuidFileVulnerables.sh, .\pentesting-tools\Enumeration\network.sh | Compress-Archive -Update -DestinationPath audit.zip; scp audit.zip uls_admin@192.168.87.144:/home/uls_admin
+
+
+
+#Linux
+
+unzip -o /home/uls_admin/audit.zip -d /home/uls_admin/audit && \cp {/home/uls_admin/audit/audit.sh,/home/uls_admin/audit/main.sh,/home/uls_admin/audit/binaries_location.sh,/home/uls_admin/audit/zip.sh} . && \cp {/home/uls_admin/audit/rsyslog.sh,/home/uls_admin/audit/firewall.sh,/home/uls_admin/audit/SuidFileVulnerables.sh,/home/uls_admin/audit/auditd.sh,/home/uls_admin/audit/network.sh} Enumeration/ && sed -i -e 's/\r$//' *.sh && sed -i -e 's/\r$//' Enumeration/*sh
