@@ -5,3 +5,5 @@ Get-ChildItem -Path .\audit.sh, .\main.sh, .\zip.sh, .\binaries_location.sh, .\p
 #Linux
 
 unzip -o /home/uls_admin/audit.zip -d /home/uls_admin/audit && \cp {/home/uls_admin/audit/audit.sh,/home/uls_admin/audit/main.sh,/home/uls_admin/audit/binaries_location.sh,/home/uls_admin/audit/zip.sh} . && \cp {/home/uls_admin/audit/rsyslog.sh,/home/uls_admin/audit/firewall.sh,/home/uls_admin/audit/SuidFileVulnerables.sh,/home/uls_admin/audit/auditd.sh,/home/uls_admin/audit/network.sh} Enumeration/ && sed -i -e 's/\r$//' *.sh && sed -i -e 's/\r$//' Enumeration/*sh
+
+unzip -o /tmp/gadominguez/audit.zip -d /tmp/gadominguez/audit && \cp {/tmp/gadominguez/audit/audit.sh,/tmp/gadominguez/audit/main.sh,/tmp/gadominguez/audit/binaries_location.sh,/tmp/gadominguez/audit/zip.sh} . && \cp {/tmp/gadominguez/audit/rsyslog.sh,/tmp/gadominguez/audit/firewall.sh,/tmp/gadominguez/audit/SuidFileVulnerables.sh,/tmp/gadominguez/audit/auditd.sh,/tmp/gadominguez/audit/network.sh} Enumeration/ && sed -i -e 's/\r$//' *.sh && sed -i -e 's/\r$//' Enumeration/*sh
