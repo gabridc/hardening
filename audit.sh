@@ -5,6 +5,8 @@ source Enumeration/SuidFileVulnerables.sh
 source Enumeration/auditd.sh
 source Enumeration/network.sh
 source Enumeration/firewall.sh
+source Enumeration/rsyslog.sh
+source Enumeration/crontab.sh
 # scp root@<ip>:/root/audit/software_list.csv .
 # scp audit.sh root@<ip>:/root/audit/audit.sh
 
@@ -125,6 +127,16 @@ if [[ ${#FIREWALL_CMD} -eq 0 ]]; then
     iptablesRulesDef
 fi
 
+echo "SYSLOG"
+rsyslogEnabled
+rsyslogPermissions
+rsyslogRules
+
+echo "CRONTAB"
+cronEnabled
+cronConfPermissions
+
+
 writeHeaderReport
 echo "**********************************************************"
 echo "               $hostname Hardening Report"
@@ -212,6 +224,15 @@ writeReport "${rsyslogEnabledRest1[0]}" "${rsyslogEnabledRest1[1]}" "${rsyslogEn
 writeReport "${rsyslogEnabledRest2[0]}" "${rsyslogEnabledRest2[1]}" "${rsyslogEnabledRest2[2]}" "${rsyslogEnabledRest2[3]}"
 #echo "${rsyslogPermissionsRest1[0]}" * "${rsyslogPermissionsRest1[1]}" * "${rsyslogPermissionsRest1[2]}" * "${rsyslogPermissionsRest1[3]}"
 writeReport "${rsyslogPermissionsRest1[0]}" "${rsyslogPermissionsRest1[1]}" "${rsyslogPermissionsRest1[2]}" "${rsyslogPermissionsRest1[3]}"
+writeReport "${rsyslogRulesRest1[0]}" "${rsyslogRulesRest1[1]}" "${rsyslogRulesRest1[2]}" "${rsyslogRulesRest1[3]}"
+writeReport "${rsyslogRulesRest2[0]}" "${rsyslogRulesRest2[1]}" "${rsyslogRulesRest2[2]}" "${rsyslogRulesRest2[3]}"
+writeReport "${rsyslogRulesRest3[0]}" "${rsyslogRulesRest3[1]}" "${rsyslogRulesRest3[2]}" "${rsyslogRulesRest3[3]}"
+
+writeSectionReport "CRONTAB"
+writeReport "${cronEnabledRest[0]}" "${cronEnabledRest[1]}" "${cronEnabledRest[2]}" "${cronEnabledRest[3]}"
+writeReport "${cronConfPermissionsRest1[0]}" "${cronConfPermissionsRest1[1]}" "${cronConfPermissionsRest1[2]}" "${cronConfPermissionsRest1[3]}"
+writeReport "${cronConfPermissionsRest2[0]}" "${cronConfPermissionsRest2[1]}" "${cronConfPermissionsRest2[2]}" "${cronConfPermissionsRest2[3]}"
+writeReport "${cronConfPermissionsRest3[0]}" "${cronConfPermissionsRest3[1]}" "${cronConfPermissionsRest3[2]}" "${cronConfPermissionsRest3[3]}"
 
 writeSectionReport "TCP WRAPPERS"
 #echo "${tcpWrapperRest1[0]}" * "${tcpWrapperRest1[1]}" * "${tcpWrapperRest1[2]}" * "${tcpWrapperRest1[3]}"
